@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000
 app.use(express.json());
 
 app.use(cors({
-  origin: "https://taskoraapp-git-main-rohits-projects-3e8dba6f.vercel.app",  
+  origin: ["https://taskora-l1kcbo6lt-rohits-projects-3e8dba6f.vercel.app"],  
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
