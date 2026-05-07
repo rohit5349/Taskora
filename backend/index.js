@@ -18,9 +18,7 @@ app.use(cors({
     "https://taskoraapp-git-main-rohits-projects-3e8dba6f.vercel.app",
     "http://localhost:5173"
   ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
+  credentials: true
 }));
 
 app.use(cookieParser());
