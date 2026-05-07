@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: [
-    "https://taskoraapp-git-main-rohits-projects-3e8dba6f.vercel.app",
+    "https://taskora-t65b.vercel.app",
     "http://localhost:5173"
   ],
   credentials: true
