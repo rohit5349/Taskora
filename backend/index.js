@@ -4,7 +4,7 @@ import cors from 'cors';
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import userRouter from './routes/user.js';
-import companyRouter from './routes/company.js';
+import taskRoutes from './routes/taskRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -23,7 +23,7 @@ app.use(cors({
 
 app.use(cookieParser());
 app.use('/backend/user', userRouter);
-app.use('/backend/company', companyRouter);
+app.use('/backend/taskRoutes', taskRoutes);
 
 const connect = async () => {
      try {

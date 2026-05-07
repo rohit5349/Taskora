@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { config as configDotenv } from "dotenv";
 import jwt from 'jsonwebtoken';
-import {User , Company} from '../models/user.js';
+import User from '../models/user.js';
 
 configDotenv();
 
@@ -9,7 +9,7 @@ configDotenv();
 export const signUp = async (req , res) =>{
        try {
              
-         const {username , email , password} = req.body;
+         const {username , email , password , role} = req.body;
      
          const existingUser = await User.findOne({email});
 
@@ -34,6 +34,7 @@ export const signUp = async (req , res) =>{
              username,
              email,
              password : hashedPassword,
+             role,
           });
           
           res.status(200).json({
@@ -128,42 +129,3 @@ export const login = async (req , res) =>{
       }
 };
 
-
-export const company = async (req , res) =>{
-       try {
-             
-         const {companyname , industry , founded , headquarters , employees , revenue , description} = req.body;
-     
-         const existingCompany = await Company.findOne({companyname});
-
-         if(existingCompany){
-             return res.status(400).json({
-                 success: false,
-                 message : "Company already exist",
-             });
-         }
-         
-          const newCompany = await Company.create({
-             companyname,
-             industry,
-             founded,
-             headquarters,
-             employees,
-             revenue,
-             description,
-          });
-          
-          res.status(200).json({
-             success : true,
-             message : "Company created Successfully!"
-          });
-
-       } catch (error) {
-          console.error(error);
-          res.status(500).json({
-             success : false,
-             error : error,
-             message : "Error creating company",
-          });
-       }
-};
