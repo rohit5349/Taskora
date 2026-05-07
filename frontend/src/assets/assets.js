@@ -1,13 +1,4 @@
-import logo from './company.jpg';
 import Hero from './Hero.jpg';
-import capgemini from './capgemini.jpeg';
-import flipkart from './flipkart.jpeg';
-import google from './Google.jpeg';
-import infosys from './Infosys.jpeg';
-import microsoft from './MicroSoft.jpeg';
-import tcs from './tcs.jpeg';
-import wipro from './wipro.jpeg';
-import zomato from './zomato.jpeg';
 import taskora from './taskora.png';
 import Team1 from './Team1.png';
 import Team2 from './Team2.png';
@@ -21,16 +12,7 @@ import Team8 from './Team8.png';
 
 export const assets = {
     taskora,
-    logo,
     Hero,
-    capgemini,
-    flipkart,
-    google,
-    infosys,
-    microsoft,
-    tcs,
-    wipro,
-    zomato,
     Team1,
     Team2,
     Team3,
