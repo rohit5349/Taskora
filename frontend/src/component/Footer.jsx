@@ -6,11 +6,10 @@ const Footer = () => {
         <footer className="px-6 md:px-16 lg:px-24 xl:px-32 pt-8 w-full text-gray-500 mt-31">
             <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-gray-500/30 pb-6">
                 <div className="md:max-w-96">
-                    <img src={assets.logo} alt="" />
+                    <img src={assets.taskora} alt="" />
                     <p className="mt-6 text-sm">
-                       Discover key details of leading companies.
-                       Explore their industry, history, and growth.
-                       All information in one simple platform.
+                        Taskora is a modern task management platform designed to streamline your workflow. 
+                        Assign tasks, track progress in real time, and ensure timely completion while enhancing team productivity.                    
                     </p>
                 </div>
                 <div className="flex-1 flex items-start md:justify-end gap-20">

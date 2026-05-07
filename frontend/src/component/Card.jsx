@@ -31,9 +31,26 @@ const Card = () => {
        {imageData.map((item , index) => (
           <div 
            key={index}
-           className={`w-[220px] md:w-[250px] lg:w-[290px]  rounded-[10px] overflow-hidden  shadow-lg text-center 
-            transform transition duration-500 ease-in-out 
-            ${isVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
+           className={`
+               w-full
+               max-w-[290px]
+               mx-auto
+               rounded-[10px]
+               overflow-hidden
+               border-2 border-transparent
+               hover:border-purple-500
+               active:border-purple-500
+               hover:shadow-[0_0_30px_rgba(168,85,247,0.6)]
+               active:shadow-[0_0_30px_rgba(168,85,247,0.6)]
+               hover:scale-[1.02]
+               active:scale-[1.02]
+               shadow-lg
+               text-center
+               transform
+               transition-all
+               duration-500
+               ease-in-out
+               ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
           >
              <img src={item.image} className="w-full h-[220px] md:h-[260px] lg:h-[300px] object-cover"/>
 

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Popup from './Popup';
+import { RollerCoaster } from 'lucide-react';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,13 +12,13 @@ const Login = () => {
   const [confirmPassword, setConfirmPassword] = useState(""); 
   const [status , setStatus] = useState("idle");
   const [message , setMessage] = useState("");
+  const [role , setRole] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || '/';
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
  
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ const Login = () => {
           setStatus("success");
           localStorage.setItem("user", JSON.stringify(res.data.user.username));
           localStorage.setItem("isLoggedIn" , 'true');
-         
+          localStorage.setItem("role", res.data.user.role);
           setTimeout(()=>{
             navigate(from);
             window.location.reload();
@@ -53,7 +54,7 @@ const Login = () => {
       return;
     }
     try {
-      const res = await axios.post(`${backendUrl}/backend/user/signup`, { username, email, password }, { withCredentials: true });
+      const res = await axios.post(`${backendUrl}/backend/user/signup`, { username, email, password , role }, { withCredentials: true });
       setMessage("Signup successful");
       setStatus("success");
       setTimeout(()=>{
@@ -131,6 +132,20 @@ const Login = () => {
               required 
             />
           </div>
+        )}
+
+        {!isLogin && (
+           <div className='flex items-center mt-4 w-full border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6'>
+             <select 
+              value={role}
+              onChange={(e)=>setRole(e.target.value)}
+              required
+             >
+                <option value=""disabled>Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+           </div>
         )}
 
         {/* Forgot Password (Login only) */}

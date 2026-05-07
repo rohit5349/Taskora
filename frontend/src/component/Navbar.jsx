@@ -1,13 +1,11 @@
 import React from "react";
 import {assets} from '../assets/assets.js';
 import {Link, useNavigate} from 'react-router-dom';
-import CompanyForm from "./CompanyForm .jsx";
 import { useState , useRef} from "react";
 
 const Navbar = () => {
     const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'CompanyList', path: '/companylist' },
+        { name: 'Home', path: '/' }
     ];
 
     const ref = React.useRef(null)
@@ -15,8 +13,8 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [user , setUser] = useState("");
+    const [role , setRole] = useState("");
     const navigate = useNavigate();
-
     
 
     React.useEffect(() => {
@@ -27,12 +25,30 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+   React.useEffect(() => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      if(isLoggedIn === 'true'){
+         const savedRole = localStorage.getItem("role");
+         if(savedRole)setRole(savedRole);
+      }else{
+          setRole("");
+      }
+
+   },[]);
+
+   
+   
+  
     React.useEffect(()=> {
         const savedUser = localStorage.getItem("user"); 
          if(savedUser){
             setUser(JSON.parse(savedUser));
          }
     },[]);
+
+    console.log("role :", role);
+
 
     const handleLogout = () => {
        localStorage.setItem("isLoggedIn" , 'false');
@@ -44,7 +60,7 @@ const Navbar = () => {
     return (
       
             <nav className={`fixed top-0 left-0 w-full flex items-center justify-between bg-gray-600 px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? "bg-blue-500 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}>  
-                <img src={assets.logo} alt="logo" className={`h-14 ${isScrolled && "invert opacity-80"}`} />
+                <img src={assets.taskora} alt="logo" className={`h-14 ${isScrolled && "invert opacity-80"}`} />
                 <div className="hidden md:flex items-center gap-4 lg:gap-8">
                     {navLinks.map((link, i) => (
                         <a key={i} href={link.path} className={`group flex flex-col gap-0.5 ${isScrolled ? "text-gray-700" : "text-white"}`}>
@@ -53,11 +69,10 @@ const Navbar = () => {
                         </a>
                     ))}
 
-                    <Link to='/company'>
-                      <button className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`}>
-                         Add Company
-                      </button>
-                    </Link>
+                    
+                        <a href="/dashboard" className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? 'text-black' : 'text-white'} transition-all`}>
+                          Dashboard
+                        </a>
 
                 </div>
 
@@ -117,12 +132,12 @@ const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
+
+                    <a href="/dashboard" className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer text-black`}>
+                          Dashboard
+                     </a>
                     
-                  <Link to='/company'>
-                    <button onClick={() => setIsMenuOpen(false)} className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-                        Add Company
-                    </button>
-                  </Link>
+      
 
                     {user ? (
                        <>

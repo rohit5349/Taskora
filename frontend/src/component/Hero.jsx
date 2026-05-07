@@ -7,17 +7,23 @@ const Hero = () => {
        md:px-16 lg:px-24 xl:px-32 text-white
        bg-[url("/src/assets/Hero.jpg")] bg-no-repeat bg-cover bg-center h-screen'
      >
-     <p className='bg-[#49B9FF]/50 px-3.5 py-1 rounded-full mt-19'>
-        Your Gateway to Business Insights
+     <p className='inline-block bg-white/20 backdrop-blur-md text-white text-xs md:text-sm 
+        px-4 py-1.5 rounded-full mt-16 shadow-md border border-white/20 tracking-wide'
+      >
+        Smart Task Management
      </p>
 
-     <h1 className='font-playfair text-2xl md:text-5xl md:text-[56px]
-     md:leading-[56px] font-bold md:font-extrabold max-w-xl mt-4'>
-        Discover Companies That Power the Future
+     <h1 className='font-playfair text-2xl md:text-4xl lg:text-[48px] 
+                 leading-tight md:leading-[52px] font-extrabold max-w-2xl mt-6 
+               text-white drop-shadow-lg'
+         >
+         Simplify Workflows and Maximize Team Productivity
     </h1>
 
-     <p className='max-w-130 mt-2 text-sm md:text-base'>
-       Discover leading companies, explore their insights, and stay informed with the latest industry data. Start your journey today.
+     <p className='max-w-xl mt-4 text-sm md:text-lg 
+           text-white/80 leading-relaxed tracking-wide'
+        >
+       Efficiently assign tasks, track real-time progress, and ensure timely completion. Empower your team with a streamlined system designed for clarity, accountability, and performance.
      </p>
 
      
