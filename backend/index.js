@@ -15,14 +15,13 @@ app.use(express.json());
 
 app.use(cors({
   origin: [
-    "https://taskora-p4dgazm4b-rohits-projects-3e8dba6f.vercel.app",
+    "https://taskoraapp-git-main-rohits-projects-3e8dba6f.vercel.app",
     "http://localhost:5173"
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
-
 
 app.use(cookieParser());
 app.use('/backend/user', userRouter);
