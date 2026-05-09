@@ -1,7 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {assets , } from '../assets/assets.js'
 
 const Hero = () => {
+
+  const headingText = " Simplify Workflows and Maximize Team Productivity";
+  const paragraphText =   `Efficiently assign tasks, track real-time progress, 
+                           and ensure timely completion. Empower your team with a streamlined system designed for clarity, 
+                           accountability, and performance.
+                          `
+                          
+  const [hText , setHText] = useState("");
+  const [pText , setPText] = useState("");
+  const [hIndex , setHIndex] = useState(0);
+  const [pIndex , setPIndex] = useState(0);
+
+  useEffect(()=>{
+     if(hIndex < headingText.length){
+       const timeout = setTimeout(()=>{
+           setHText((prev) => (prev + headingText[hIndex]));
+           setHIndex((prev) => prev + 1);
+       },80);
+
+       return () => clearInterval(timeout);
+    }
+  },[hText , hIndex]);
+
+  
+  useEffect(() => {
+    if(pIndex < paragraphText.length){
+       const timeout = setTimeout(() => {
+           setPText((prev) => (prev + paragraphText[pIndex]));
+           setPIndex((prev) => (prev + 1));
+       },80);
+
+       return () => clearInterval(timeout);
+    }
+  } , [pText , pIndex]);
+
+
+  useEffect(() => {
+     if(hIndex === headingText.length && pIndex === paragraphText.length){
+        const restart  = setTimeout(()=>{
+           setHText("");
+           setPText("");
+           setHIndex(0);
+           setPIndex(0);
+        },2500);
+
+        return () => clearInterval(restart);
+     }
+  },[hIndex , pIndex , headingText.length , paragraphText.length]);
+
   return (
     <div className='flex flex-col  items-start justify-center px-6
        md:px-16 lg:px-24 xl:px-32 text-white
@@ -13,17 +62,29 @@ const Hero = () => {
         Smart Task Management
      </p>
 
-     <h1 className='font-playfair text-2xl md:text-4xl lg:text-[48px] 
-                 leading-tight md:leading-[52px] font-extrabold max-w-2xl mt-6 
-               text-white drop-shadow-lg'
+     <h1 className='text-[##FFFFFF] text-3xl md:text-4xl font-bold mb-4
+                    whitespace-normal text-center px-4 border-r-4 border-white pr-2 animate-pulse
+                     mt-5
+                    '
+                    style={{
+                        textShadow: "0px 2px 10px rgba(0,0,0,0.8)"
+                    }}
          >
-         Simplify Workflows and Maximize Team Productivity
+         {hText}
     </h1>
 
-     <p className='max-w-xl mt-4 text-sm md:text-lg 
-           text-white/80 leading-relaxed tracking-wide'
+     <p className='text-[##D1D5DB] text-base md:text-lg
+                    max-w-xl
+                    text-center
+                    px-4 sm:px-6
+                    border-r-2 border-white pr-1
+                    animate-pulse
+                    '
+                    style={{
+                       textShadow: "0px 2px 10px rgba(0,0,0,0.8)"
+                    }}
         >
-       Efficiently assign tasks, track real-time progress, and ensure timely completion. Empower your team with a streamlined system designed for clarity, accountability, and performance.
+        {pText}
      </p>
 
      
